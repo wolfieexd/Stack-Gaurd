@@ -1,0 +1,6 @@
+#V2
+(contract-deploy 'security-monitor)\n
+(contract-call? .security-monitor get-authorized-service)\n
+(contract-deploy 'security-monitor)\n
+(contract-deploy? 'security-monitor)\n
+(contract-call? .security-monitor)

@@ -1,0 +1,85 @@
+/* StackGuard Browser Extension - Content Script Styles */
+.stackguard-address-highlight {
+    background: rgba(255, 215, 0, 0.2) !important;
+    border: 1px dashed #ffd700 !important;
+    border-radius: 3px !important;
+    padding: 1px 3px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.stackguard-address-highlight:hover {
+    background: rgba(255, 215, 0, 0.4) !important;
+}
+
+.stackguard-address-danger {
+    background: rgba(244, 67, 54, 0.2) !important;
+    border: 1px dashed #f44336 !important;
+    animation: stackguard-pulse 2s infinite;
+}
+
+.stackguard-address-warning {
+    background: rgba(255, 152, 0, 0.2) !important;
+    border: 1px dashed #ff9800 !important;
+}
+
+.stackguard-tooltip {
+    position: absolute !important;
+    top: -50px !important;
+    left: 0 !important;
+    background: #333 !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    z-index: 999999 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+    font-family: Arial, sans-serif !important;
+    max-width: 200px !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+.stackguard-tooltip::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 20px !important;
+    border: 5px solid transparent !important;
+    border-top-color: #333 !important;
+}
+
+.stackguard-tooltip.show {
+    opacity: 1 !important;
+}
+
+@keyframes stackguard-pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0.8; }
+}
+
+.stackguard-protection-badge {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    padding: 10px 15px !important;
+    border-radius: 25px !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    z-index: 999998 !important;
+    cursor: pointer !important;
+    transition: transform 0.3s ease !important;
+    font-family: Arial, sans-serif !important;
+}
+
+.stackguard-protection-badge:hover {
+    transform: translateY(-2px) !important;
+}

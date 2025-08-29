@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 400px;
+            min-height: 500px;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .security-status {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .status-icon {
+            font-size: 1.5em;
+        }
+        
+        .status-text {
+            font-weight: 600;
+        }
+        
+        .current-site {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .site-url {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+        
+        .site-status {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .action-button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .primary-button {
+            background: linear-gradient(135deg, #ffd700, #ffeb3b);
+            color: #333;
+        }
+        
+        .primary-button:hover {
+            background: linear-gradient(135deg, #ffeb3b, #ffc107);
+        }
+        
+        .threat-alert {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid rgba(231, 76, 60, 0.5);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 15px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .threat-alert h4 {
+            margin: 0 0 8px 0;
+            color: #ff6b6b;
+        }
+        
+        .threat-alert p {
+            margin: 0;
+            font-size: 0.85em;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .footer {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.85em;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #ffd700;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .address-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .address-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .risk-clean {
+            background: rgba(39, 174, 96, 0.3);
+            color: #27ae60;
+        }
+        
+        .risk-low {
+            background: rgba(241, 196, 15, 0.3);
+            color: #f1c40f;
+        }
+        
+        .risk-medium {
+            background: rgba(243, 156, 18, 0.3);
+            color: #f39c12;
+        }
+        
+        .risk-high {
+            background: rgba(230, 126, 34, 0.3);
+            color: #e67e22;
+        }
+        
+        .risk-critical {
+            background: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🛡️ StackGuard</div>
+        <div class="subtitle">Stacks Security Guardian</div>
+    </div>
+    
+    <div class="content">
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Scanning current site...</p>
+        </div>
+        
+        <div id="main-content" style="display: none;">
+            <div class="security-status">
+                <div class="status-header">
+                    <span id="status-icon" class="status-icon">✅</span>
+                    <span id="status-text" class="status-text">Site Security: Clean</span>
+                </div>
+                
+                <div class="current-site">
+                    <div id="site-url" class="site-url">example.com</div>
+                    <div id="site-status" class="site-status">No security threats detected</div>
+                </div>
+            </div>
+            
+            <div id="threat-alerts"></div>
+            
+            <div class="quick-actions">
+                <input 
+                    type="text" 
+                    id="address-input" 
+                    class="address-input" 
+                    placeholder="Check Stacks address (SP1...)"
+                >
+                <button id="check-address" class="action-button primary-button">
+                    🔍 Check Address Security
+                </button>
+                <button id="report-threat" class="action-button">
+                    🚨 Report Security Threat
+                </button>
+                <button id="view-dashboard" class="action-button">
+                    📊 Open Full Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <a href="#" id="options-link" class="footer-link">Settings & Options</a>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
